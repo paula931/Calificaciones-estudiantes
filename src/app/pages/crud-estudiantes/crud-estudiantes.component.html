@@ -1,0 +1,176 @@
+<div *ngIf="estudiante">
+  <form [formGroup]="estudianteForm" (submit)="update()">
+    <div class="contenedor">
+      <div class="fila">
+        <div class="col-4">
+          <input
+            type="text"
+            name="nombre"
+            id="nombre"
+            formControlName="nombre"
+            [(ngModel)]="estudiante.nombre"
+            placeholder="Nombre"
+          />
+          <div
+            class="danger"
+            *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)"
+          >
+            <div
+              class="container-error-message"
+              *ngIf="nombre?.errors?.required"
+            >
+            *Obligatorio
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <input
+            type="text"
+            name="apellido"
+            id="apellido"
+            formControlName="apellido"
+            [(ngModel)]="estudiante.apellido"
+            placeholder="Apellido"
+          />
+          <div
+            class="danger"
+            *ngIf="apellido?.invalid && (apellido?.dirty || apellido?.touched)"
+          >
+            <div
+              class="container-error-message"
+              *ngIf="apellido?.errors?.required"
+            >
+            *Obligatorio
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <input
+            type="number"
+            name="cedula"
+            id="cedula"
+            formControlName="cedula"
+            [(ngModel)]="estudiante.cedula"
+            placeholder="cedula"
+          />
+          <div
+            class="danger"
+            *ngIf="
+              cedula?.invalid && (cedula?.dirty || cedula?.touched)"
+          >
+            <div
+              class="container-error-message"
+              *ngIf="cedula?.errors?.required"
+            >
+            *Obligatorio
+            </div>
+            <div
+              class="container-error-message"
+              *ngIf="cedula?.errors?.pattern"
+            >
+              Solo números 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fila">
+        <div class="col-4">
+          <input
+            type="number"
+            name="nota1"
+            id="nota1"
+            formControlName="nota1"
+            [(ngModel)]="estudiante.nota1"
+            placeholder="nota1"
+          />
+          <div
+            class="danger"
+            *ngIf="nota1?.invalid && (nota1?.dirty || nota1?.touched)"
+          >
+            <div
+              class="container-error-message"
+              *ngIf="nota1?.errors?.required"
+            >
+            *Obligatorio
+            </div>
+            <div
+              class="container-error-message"
+              *ngIf="nota1?.errors?.pattern"
+            >
+              Solo números
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <input
+            type="number"
+            name="nota2"
+            id="nota2"
+            formControlName="nota2"
+            [(ngModel)]="estudiante.nota2"
+            placeholder="nota2"
+          />
+          <div
+            class="danger"
+            *ngIf="nota2?.invalid && (nota2?.dirty || nota2?.touched)"
+          >
+            <div
+              class="container-error-message"
+              *ngIf="nota2?.errors?.required"
+            >
+            *Obligatorio
+            </div>
+            <div
+              class="container-error-message"
+              *ngIf="nota2?.errors?.pattern"
+            >
+              Solo números 
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <input
+            type="number"
+            name="nota3"
+            id="nota3"
+            formControlName="nota3"
+            [(ngModel)]="estudiante.nota3"
+            placeholder="nota3"
+          />
+          <div
+            class="danger"
+            *ngIf="nota3?.invalid && (nota3?.dirty || nota3?.touched)"
+          >
+            <div
+              class="container-error-message"
+              *ngIf="nota3?.errors?.required"
+            >
+            *Obligatorio
+            </div>
+            <div
+              class="container-error-message"
+              *ngIf="(nota3?.errors)!.pattern"
+            >
+              Solo números 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fila">
+        <div class="col-4">
+          <input
+            type="number"
+            placeholder="{{ estudiante.promedio }}"
+            value="{{ estudiante.promedio }}"
+            disabled
+          />
+        </div>
+        <div class="col-4">
+          <div class="center">
+            <button class="btn">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,179 @@
+<div class="contenedor">
+  <div class="fila">
+    <div class="col-6">
+      <h1> Notas</h1>
+      <ul class="estudiantes fila">
+        <li
+          *ngFor="let item of estudiantes"
+          [class.selected]="item === estudiante"
+          class="col-6"
+          (click)="seleccionar(item)" >
+          <span>{{ item?.id }}</span>
+          {{ item?.nombre }} {{ item?.apellido }}
+          <blockquote>Promedio: {{ item?.promedio }}</blockquote>
+          <button
+            class="delete"
+            title="Borrar estudiante"
+            (click)="delete(item)"
+          >
+            x
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <h1>ACTUALIZAR NOTAS</h1>
+      <form
+        [formGroup]="estudianteForm"
+        (submit)="
+          postEstudiante(
+            nombre?.value,
+            apellido?.value,
+            cedula?.value,
+            nota1?.value,
+            nota2?.value,
+            nota3?.value
+          )
+        "
+      >
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          formControlName="nombre"
+          placeholder="Nombre"
+        />
+        <div
+          class="danger"
+          *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)"
+        >
+          <div class="container-error-message" *ngIf="nombre?.errors?.required">
+            *
+          </div>
+        </div>
+        <input
+          type="text"
+          name="apellido"
+          id="apellido"
+          formControlName="apellido"
+          placeholder="Apellido"
+        />
+        <div
+          class="danger"
+          *ngIf="apellido?.invalid && (apellido?.dirty || apellido?.touched)"
+        >
+          <div
+            class="container-error-message"
+            *ngIf="apellido?.errors?.required"
+          >
+          *
+          </div>
+        </div>
+        <input
+          type="number"
+          name="cedula"
+          id="cedula"
+          formControlName="cedula"
+          placeholder="cedula"
+        />
+        <div
+          class="danger"
+          *ngIf="cedula?.invalid && (cedula?.dirty || cedula?.touched)"
+        >
+          <div
+            class="container-error-message"
+            *ngIf="cedula?.errors?.required"
+          >
+          *
+          </div>
+          <div
+            class="container-error-message"
+            *ngIf="cedula?.errors?.pattern"
+          >
+            Solo números 
+          </div>
+        </div>
+        <input
+          type="number"
+          name="nota1"
+          id="nota1"
+          formControlName="nota1"
+          placeholder="nota1"
+        />
+        <div
+          class="danger"
+          *ngIf="nota1?.invalid && (nota1?.dirty || nota1?.touched)"
+        >
+          <div
+            class="container-error-message"
+            *ngIf="nota1?.errors?.required"
+          >
+            *
+          </div>
+          <div
+            class="container-error-message"
+            *ngIf="nota1?.errors?.pattern"
+          >
+          </div>
+        </div>
+        <input
+          type="number"
+          name="nota2?"
+          id="nota2"
+          formControlName="nota2"
+          placeholder="nota2"
+        />
+        <div
+          class="danger"
+          *ngIf="nota2?.invalid && (nota2?.dirty || nota2?.touched)"
+        >
+          <div
+            class="container-error-message"
+            *ngIf="nota2?.errors?.required"
+          >
+          *
+          </div>
+          <div
+            class="container-error-message"
+            *ngIf="nota2?.errors?.pattern"
+          >
+          </div>
+        </div>
+        <input
+          type="number"
+          name="nota3"
+          id="nota3"
+          formControlName="nota3"
+          placeholder="nota3"
+        />
+        <div
+          class="danger"
+          *ngIf="nota3?.invalid && (nota3?.dirty || nota3?.touched)"
+        >
+          <div
+            class="container-error-message"
+            *ngIf="nota3?.errors?.required"
+          >
+            *
+          </div>
+          <div
+            class="container-error-message"
+            *ngIf="(nota3?.errors)!.pattern"
+          >
+          </div>
+        </div>
+        <div class="contenedor">
+          <div class="center">
+            <button class="btn">GUARDAR</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="fila">
+      <div class="col-12">
+        <h1>Administrar </h1>
+        <pagl-crud-estudiantes [estudiante]="estudiante"></pagl-crud-estudiantes>
+      </div>
+    </div>
+  </div>
+</div>
